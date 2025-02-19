@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 import { useState } from "react";
-import {changePassword} from "../services/managePasswordServices";
+import {changePassword} from "../services/userServices";
 
 
 const ManagePasswordComponent = () => {

@@ -4,7 +4,8 @@ const Room = lazy(() => import('../pages/Room'));
 const Category = lazy(() => import('../pages/Category'));
 const Profile = lazy(() => import('../pages/Profile'));
 const Settings = lazy(() => import('../pages/Settings'));
-const Password = lazy(() => import('../pages/Password'))
+const Password = lazy(() => import('../pages/Password'));
+const Bookings = lazy(() => import('../pages/Booking'));
 
 const coreRoutes = [
   {
@@ -31,6 +32,11 @@ const coreRoutes = [
     path: '/changePassword',
     title: 'Password',
     component: Password,
+  },
+  {
+    path: '/bookings',
+    title: 'Bookings',
+    component: Bookings,
   }
 ];
 
