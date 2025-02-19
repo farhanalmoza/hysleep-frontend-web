@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 
 const Room = lazy(() => import('../pages/Room'));
+const AddRoom = lazy(() => import('../pages/Room/add'));
 const Category = lazy(() => import('../pages/Category'));
 const Profile = lazy(() => import('../pages/Profile'));
 const Settings = lazy(() => import('../pages/Settings'));
@@ -22,10 +23,15 @@ const coreRoutes = [
     component: Room,
   },
   {
+    path: '/room/add',
+    title: 'Add Room',
+    component: AddRoom,
+  },
+  {
     path: '/category',
     title: 'Category',
     component: Category,
-  }
+  },
 ];
 
 const routes = [...coreRoutes];

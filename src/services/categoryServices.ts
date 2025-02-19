@@ -2,8 +2,12 @@ import API from './api';
 
 export const getCategories = async() => {
   try {
-    const res = await API.get('category/public/get-all');
-    return res.data;
+    const response = await API.get('category/public/get-all', {
+      headers: {
+        "ngrok-skip-browser-warning": "69420"
+      },
+    });    
+    return response.data;
   } catch (error) {
     console.log("Error", error);
     throw error;
