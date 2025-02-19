@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../utils/AuthProvider';
+import { useAuth } from '../hooks/AuthProvider';
 
 const DefaultLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -34,7 +34,9 @@ const DefaultLayout = () => {
       </div>
       {/* <!-- ===== Page Wrapper End ===== --> */}
     </div>
-  ) : <Navigate to="/auth/signin" />;
+  ) : (
+    <Navigate to="/auth/signin" />
+  );
 };
 
 export default DefaultLayout;

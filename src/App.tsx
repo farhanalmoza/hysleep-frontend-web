@@ -6,7 +6,7 @@ import Dashboard from './pages/Dashboard/index';
 import SignIn from './pages/Authentication/SignIn';
 import Loader from './common/Loader';
 import routes from './routes';
-import { AuthProvider } from './utils/AuthProvider';
+import { AuthProvider } from './hooks/AuthProvider'
 
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
@@ -14,7 +14,7 @@ function App() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
+    setTimeout(() => setLoading(false), 500);
   }, []);
 
   return loading ? (

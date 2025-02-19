@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import UserOne from '../images/user/user-01.png';
-import { useAuth } from '../utils/AuthProvider';
+import { useAuth } from '../hooks/AuthProvider';
 
 const DropdownUser = () => {
   const navigate = useNavigate();
@@ -13,7 +13,6 @@ const DropdownUser = () => {
   const dropdown = useRef<any>(null);
 
   const handleSignout = () => {
-    console.log('logout');
     logout();
     navigate('/auth/signin');
   };
