@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { useEffect, useState } from "react";
-import { getRooms } from "../services/roomServices";
+import { deleteRoom, getRooms } from "../services/roomServices";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const RoomTable = () => {
   const [rooms, setRooms] = useState([]);
@@ -13,7 +14,6 @@ const RoomTable = () => {
     fetchRooms();    
   }, []);
   
-
   const fetchRooms = async() => {
     try {
       const data = await getRooms();
@@ -22,6 +22,17 @@ const RoomTable = () => {
       setError('Failed to fetch rooms');
     }
   }
+
+  const handleDelete = async(id: any) => {
+    try {
+      const res = await deleteRoom(id);
+      fetchRooms();
+      toast.success('Room deleted successfully');
+    } catch (error) {
+      toast.error('Failed to delete room');
+    }
+  }
+
   return (
     <div className="rounded-2xl border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <div className="max-w-full overflow-x-auto">
@@ -92,7 +103,7 @@ const RoomTable = () => {
                   <button className="hover:text-primary" onClick={() => navigate(`/room/edit/${item.roomId}`)}>
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
-                  <button className="hover:text-primary">
+                  <button className="hover:text-primary" onClick={() => handleDelete(item.roomId)}>
                     <svg
                       className="fill-current"
                       width="18"
