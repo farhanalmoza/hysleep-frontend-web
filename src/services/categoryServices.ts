@@ -34,12 +34,16 @@ export const updateCategory = async(data: any) => {
   }
 }
 
-export const deleteCategory = async(data: any) => {
+export const deleteCategory = async(id: any) => {
   try {
-    const res = await API.delete('category/public/delete-category', data);
+    const res = await API.post('category/public/delete-category?categoryId=' + id, {
+      headers: {
+        "ngrok-skip-browser-warning": "69420"
+      },
+    });
     return res.data;
-  } catch (error) {
-    console.log("Error", error);
-    throw error;
+  } catch (error: any) {
+    console.log("Error", error.response.data);
+    throw error.response.data;
   }
 }

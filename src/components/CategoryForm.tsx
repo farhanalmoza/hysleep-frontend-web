@@ -2,17 +2,25 @@ import { useState } from "react";
 import { createCategory } from "../services/categoryServices";
 import toast from "react-hot-toast";
 
-const CategoryForm = () => {
+const CategoryForm = ({onCategoryAdded}: any) => {
   const [categoryName, setCategoryName] = useState("");
+  const [categoryErrorName, setCategoryErrorName] = useState("");
   const [isEdit, setIsEdit] = useState(false);
 
-  const handleAddCategory = async() => {    
+  const handleAddCategory = async(e: any) => {
+    if(!categoryName) {
+      setCategoryErrorName("Please enter a category name");
+      return;
+    }
+
+    e.preventDefault();
     try {
       const data = {
         categoryName,
       };
       const res = await createCategory(data);
       toast.success('Category created successfully');
+      onCategoryAdded();
       setCategoryName('');
     } catch (error) {
       console.log(error);
@@ -21,7 +29,7 @@ const CategoryForm = () => {
   }
 
   return (
-    <div className="rounded-2xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark xl:pb-1">
+    <div className="rounded-2xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark xl:pb-1 h-fit">
       <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
         <h3 className="font-medium text-black dark:text-white">
           Catgory Form
@@ -38,7 +46,7 @@ const CategoryForm = () => {
               setCategoryName(e.target.value);
             }}
           />
-          <p className="text-sm text-danger mt-2">{"Error message"}</p>
+          {categoryErrorName && (<p className="text-sm text-danger mt-2">{categoryErrorName}</p>)}
         </div>
 
         <button

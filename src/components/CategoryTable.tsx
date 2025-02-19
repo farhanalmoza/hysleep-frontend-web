@@ -1,25 +1,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
-import { useEffect, useState } from "react";
-import { getCategories } from "../services/categoryServices";
+import { deleteCategory } from "../services/categoryServices";
+import toast from "react-hot-toast";
 
-const CategoryTable = () => {
-  const [categories, setCategories] = useState([]);
-  const [error, setError] = useState<string | null>(null);
+const CategoryTable = ({categories, fetchCategories}: any) => {
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  const fetchCategories = async() => {
+  const handleDelete = async(id: any) => {
     try {
-      const data = await getCategories();
-      setCategories(data);
-      console.log(categories);
-    } catch (error) {
-      setError('Failed to fetch categories');
+      const res = await deleteCategory(id);
+      fetchCategories();
+      toast.success('Category deleted successfully');
+    } catch (error: any) {
+      toast.error(error.errorMessage);
     }
   }
+
   return (
     <div className="rounded-2xl border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <div className="max-w-full overflow-x-auto">
@@ -35,10 +30,11 @@ const CategoryTable = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {categories.map((category: any) => (
+              <tr key={category.categoryId}>
               <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                 <h5 className="font-medium text-black dark:text-white">
-                  Category 1
+                  {category.categoryName}
                 </h5>
               </td>
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
@@ -46,7 +42,7 @@ const CategoryTable = () => {
                   <button className="hover:text-primary">
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
-                  <button className="hover:text-primary">
+                  <button className="hover:text-primary" onClick={() => handleDelete(category.categoryId)}>
                     <svg
                       className="fill-current"
                       width="18"
@@ -75,7 +71,7 @@ const CategoryTable = () => {
                   </button>
                 </div>
               </td>
-            </tr>
+            </tr>))}
           </tbody>
         </table>
       </div>
