@@ -24,18 +24,21 @@ const BookingListComponent = () => {
     endDate: number;  
     status: string;
   };
-  
 
-  type BookingList = Booking[]
+  type ResponseModel = {
+    errorCode: number | null;
+    errorMessage: string | null;
+    val: Array<Booking>;
+  };
   
-  const [data, setData] = useState<Booking[]>([]);
+  
+  const [data, setData] = useState<Array<Booking>>([]);
 
     const getBookingData = async () => {
       try {
         
-        const response = await getAllBooking();
-        const data1: Booking[] = response.val;
-        setData(data1);   
+        const response: ResponseModel = await getAllBooking();
+        setData(response.val);   
       } catch (error) {
         toast.error('Something went wrong');
       }
@@ -46,18 +49,20 @@ const BookingListComponent = () => {
   function init() {
     console.log(Array.isArray(data))
     getBookingData();
-    console.log(data);
-    // data.map((value:Booking, index:number) => {
-    //   // console.log(value)
-    //   return (
-    //     <tr key={index}>
-    //       <td>{value.bookingId}</td>
-    //       <td>
-    //       {value.bookingId} </td>
-    //     </tr>
-    //   )})
-    //   return <>{data}</>;
+    const requests = data.map((value:Booking, index:number)  => {
+      return (
+        <tr key={index}>
+          <td>{value.bookingId}</td>
+          <td>{value.room.roomNumber}</td>
+          <td>{value.user.firstName + ' ' + value.user.lastName}</td>
+          <td>{value.status}</td>
+        </tr>
+      );
+    });
+    return <>{requests}</>;
   }
+
+  
   
     return (
       <div className="bg-white rounded-md dark:border-strokedark dark:bg-boxdark w-full">
@@ -70,7 +75,7 @@ const BookingListComponent = () => {
               <th>Status</th>
             </tr>
           </thead>
-          {/* <tbody>{init()}</tbody> */}
+          <tbody>{init()}</tbody>
         </table>
       </div>
     )
