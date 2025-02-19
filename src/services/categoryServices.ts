@@ -18,15 +18,19 @@ export const createCategory = async(data: any) => {
   try {
     const res = await API.post('category/public/create-category', data);
     return res.data;
-  } catch (error) {
+  } catch (error: any) {
     console.log("Error", error);
-    throw error;
+    throw error.response.data;
   }
 }
 
 export const updateCategory = async(data: any) => {
   try {
-    const res = await API.put('category/public/update-name', data);
+    const res = await API.post('category/public/update-name', data, {
+      headers: {
+        "ngrok-skip-browser-warning": "69420"
+      },
+    });
     return res.data;
   } catch (error) {
     console.log("Error", error);

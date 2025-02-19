@@ -3,7 +3,7 @@ import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { deleteCategory } from "../services/categoryServices";
 import toast from "react-hot-toast";
 
-const CategoryTable = ({categories, fetchCategories}: any) => {
+const CategoryTable = ({categories, fetchCategories, fetchCategory}: any) => {
 
   const handleDelete = async(id: any) => {
     try {
@@ -39,7 +39,7 @@ const CategoryTable = ({categories, fetchCategories}: any) => {
               </td>
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                 <div className="flex items-center space-x-3.5">
-                  <button className="hover:text-primary">
+                  <button className="hover:text-primary" onClick={() => fetchCategory(category.categoryId, category.categoryName)}>
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
                   <button className="hover:text-primary" onClick={() => handleDelete(category.categoryId)}>

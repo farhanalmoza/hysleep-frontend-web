@@ -7,6 +7,8 @@ import toast from 'react-hot-toast';
 
 const Category = () => {
   const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
     fetchCategories();    
@@ -21,12 +23,21 @@ const Category = () => {
     }
   }
 
+  const fetchCategory = async(id: any, categoryName: any) => {
+    setIsEdit(true);
+    setCategory([id, categoryName]);
+  }
+
+  const cancelEdit = () => {
+    setIsEdit(false);
+  }
+
   return (
     <>
      <Breadcrumb pageName="Category" />
      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <CategoryForm onCategoryAdded={fetchCategories} />
-      <CategoryTable categories={categories} fetchCategories={fetchCategories} />
+      <CategoryForm onCategoryAdded={fetchCategories} isEdit={isEdit} category={category} cancelEdit={cancelEdit} />
+      <CategoryTable categories={categories} fetchCategories={fetchCategories} fetchCategory={fetchCategory} />
      </div>
     </>
   )
