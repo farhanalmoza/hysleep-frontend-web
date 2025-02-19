@@ -14,9 +14,6 @@ const SignIn = () => {
   const [passwordError, setPasswordError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
-
-  console.log(localStorage.getItem('token'));
-  
   
   useEffect(() => {
     if (localStorage.getItem('token') !== null) {

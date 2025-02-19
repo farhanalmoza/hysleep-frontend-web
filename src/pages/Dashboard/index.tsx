@@ -1,5 +1,4 @@
-const ECommerce = () => {
-  console.log(localStorage.getItem('token'));
+const Dashboard = () => {
   
   return (
     <>
@@ -8,4 +7,4 @@ const ECommerce = () => {
   );
 };
 
-export default ECommerce;
+export default Dashboard;
