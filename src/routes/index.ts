@@ -4,6 +4,7 @@ const Room = lazy(() => import('../pages/Room'));
 const Category = lazy(() => import('../pages/Category'));
 const Profile = lazy(() => import('../pages/Profile'));
 const Settings = lazy(() => import('../pages/Settings'));
+const Password = lazy(() => import('../pages/Password'))
 
 const coreRoutes = [
   {
@@ -25,6 +26,11 @@ const coreRoutes = [
     path: '/category',
     title: 'Category',
     component: Category,
+  },
+  {
+    path: '/changePassword',
+    title: 'Password',
+    component: Password,
   }
 ];
 

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import Logo from '../images/logo/hysleep.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faClipboard } from '@fortawesome/free-regular-svg-icons';
+import { faBuilding, faClipboard, faEye } from '@fortawesome/free-regular-svg-icons';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -171,6 +171,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </NavLink>
               </li>
               {/* <!-- Menu Item Category --> */}
+              <li>
+                <NavLink
+                  to="/changePassword"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    (pathname === '/changePasswird') && 'bg-graydark dark:bg-meta-4'
+                  }`}
+                  aria-current='page'
+                >
+                  <FontAwesomeIcon  icon={faEye}/>
+                    Manage Password
+                </NavLink>
+              </li>
             </ul>
           </div>
         </nav>

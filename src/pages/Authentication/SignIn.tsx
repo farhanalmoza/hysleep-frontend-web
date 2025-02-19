@@ -53,6 +53,7 @@ const SignIn = () => {
       
       toast.success('Login succesful');
       login(response.data.token);
+      localStorage.setItem('email', email);
       setIsLoading(false);
       navigate('/');
     } catch (error) {
