@@ -2,23 +2,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { useEffect, useState } from "react";
 import { getRooms } from "../services/roomServices";
+import { useNavigate } from "react-router-dom";
 
 const RoomTable = () => {
   const [rooms, setRooms] = useState([]);
   const [error, setError] = useState<string | null>(null);
-  
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchCategories();
+    fetchRooms();    
   }, []);
   
 
-  const fetchCategories = async() => {
+  const fetchRooms = async() => {
     try {
       const data = await getRooms();
       setRooms(data);
     } catch (error) {
-      setError('Failed to fetch categories');
+      setError('Failed to fetch rooms');
     }
   }
   return (
@@ -88,7 +89,7 @@ const RoomTable = () => {
               </td>
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                 <div className="flex items-center space-x-3.5">
-                  <button className="hover:text-primary">
+                  <button className="hover:text-primary" onClick={() => navigate(`/room/edit/${item.roomId}`)}>
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
                   <button className="hover:text-primary">

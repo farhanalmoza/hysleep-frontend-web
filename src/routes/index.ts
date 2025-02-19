@@ -2,6 +2,7 @@ import { lazy } from 'react';
 
 const Room = lazy(() => import('../pages/Room'));
 const AddRoom = lazy(() => import('../pages/Room/add'));
+const EditRoom = lazy(() => import('../pages/Room/edit'));
 const Category = lazy(() => import('../pages/Category'));
 const Profile = lazy(() => import('../pages/Profile'));
 const Settings = lazy(() => import('../pages/Settings'));
@@ -26,6 +27,11 @@ const coreRoutes = [
     path: '/room/add',
     title: 'Add Room',
     component: AddRoom,
+  },
+  {
+    path: '/room/edit/:id',
+    title: 'Edit Room',
+    component: EditRoom,
   },
   {
     path: '/category',

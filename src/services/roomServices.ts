@@ -27,3 +27,33 @@ export const createRoom = async(data: any) => {
     throw error;
   }
 }
+
+export const getRoom = async(id: any) => {
+  try {
+    const res = await API.post(`rooms/public/getById`, {
+        roomId: id
+      }, {
+        headers: {
+          "ngrok-skip-browser-warning": "69420"
+        },
+    });
+    return res.data;
+  } catch (error) {
+    console.log("Error", error);
+    throw error;
+  }
+}
+
+export const updateStatus = async(data: any) => {
+  try {
+    const res = await API.post('rooms/public/updateStatus', data, {
+      headers: {
+        "ngrok-skip-browser-warning": "69420"
+      },
+    });
+    return res.data;
+  } catch (error) {
+    console.log("Error", error);
+    throw error;
+  }
+}
