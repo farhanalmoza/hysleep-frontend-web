@@ -33,12 +33,14 @@ const BookingListComponent = () => {
   
   
   const [data, setData] = useState<Array<Booking>>([]);
+  const [tableRows, setTableRows] = useState<JSX.Element[]>([]);
 
     const getBookingData = async () => {
       try {
         
         const response: ResponseModel = await getAllBooking();
-        setData(response.val);   
+        console.log(data);
+        return response.val;
       } catch (error) {
         toast.error('Something went wrong');
       }
@@ -47,6 +49,7 @@ const BookingListComponent = () => {
     
 
   function init() {
+    console.log('init');
     const requests = data.map((value:Booking, index:number)  => {
       return (
         <tr key={index}>
@@ -60,16 +63,28 @@ const BookingListComponent = () => {
     return requests;
   }
 
-  function initiate() {
-    const [tableRows, setTableRows] = useState<JSX.Element[]>([]);
-  
+   function initiate() {
+
     useEffect(() => {
-      console.log('INIT')
-      getBookingData();
-      setTableRows(init()); // Call `init()` only on mount
+      const initial = async () => {
+        try {
+          const response = await getBookingData();
+          setData(response);
+        } catch (error) {
+
+        }
+        
+      }
+      initial();
     }, []);
-  
-    return <tbody>{tableRows}</tbody>;
+
+    useEffect(() => {
+      if (data !== null) {
+        setTableRows(init()); // Call `init()` only when data is ready
+      }
+    }, [data]); 
+
+    return <>{tableRows}</>;
   }
   
     return (
