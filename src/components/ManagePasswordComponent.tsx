@@ -72,7 +72,7 @@ const handleChangePassword = async (e: any) => {
               setCurrentPassword(e.target.value);
             }}
              value={currentPassword} type='password' required placeholder="Enter current password [6+ Characters]" className={'p-2 outline outline-[1.5px] rounded outline-[#EEEEEE] dark:outline-strokedark dark:outline-5 dark:bg-boxdark mt-4 w-6/12'}/>
-            <span className={'ml-4 outline outline-[#EEEEEE] p-1 rounded'} onClick={() => handleShowField('eye1')}>
+            <span className={'ml-4 outline outline-[#EEEEEE] hover:bg-[#EEEEEE] p-[0.6rem] hover:bg-[#EEEEEE] rounded dark:outline-strokedark dark:hover:outline-white'} onClick={() => handleShowField('eye1')}>
               <FontAwesomeIcon icon={faEye} />
             </span>
           </div>
@@ -82,7 +82,7 @@ const handleChangePassword = async (e: any) => {
             <input id='eye2' onChange={(e) => {
               setPassword(e.target.value);
             }} value={password} type='password' required placeholder="Enter new password [6+ Characters]" className={'p-2 outline outline-[1.5px] rounded outline-[#EEEEEE] mt-4 w-6/12 dark:outline-strokedark dark:bg-boxdark dark:outline-5'}/>
-            <span className={'ml-4 outline outline-[#EEEEEE] p-1 rounded'} onClick={() => handleShowField('eye2')}>
+            <span className={'ml-4 outline outline-[#EEEEEE] p-[0.6rem] hover:bg-[#EEEEEE] rounded dark:outline-strokedark dark:hover:outline-white'} onClick={() => handleShowField('eye2')}>
               <FontAwesomeIcon icon={faEye} />
             </span>
           </div>
@@ -91,7 +91,7 @@ const handleChangePassword = async (e: any) => {
             <input id='eye3' onChange={(e) => {
               setConfirmPassword(e.target.value);
             }} value={confirmPassword} type='password' required placeholder="Enter new password [6+ Characters]" className={'p-2 outline outline-[1.5px] rounded outline-[#EEEEEE] mt-4 w-6/12 dark:outline-strokedark dark:bg-boxdark dark:outline-5'}/>
-            <span className={'ml-4 outline outline-[#EEEEEE] p-1 rounded'} onClick={() => handleShowField('eye3')}>
+            <span className={'ml-4 outline outline-[#EEEEEE] hover:bg-[#EEEEEE] p-[0.6rem] rounded dark:outline-strokedark dark:hover:outline-white'} onClick={() => handleShowField('eye3')}>
                 <FontAwesomeIcon icon={faEye} />
             </span>
           </div>
