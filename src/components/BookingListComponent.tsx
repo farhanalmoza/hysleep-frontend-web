@@ -52,10 +52,10 @@ const BookingListComponent = () => {
     const requests = data.map((value:Booking, index:number)  => {
       return (
         <tr key={index}>
-          <td>{value.bookingId}</td>
-          <td>{value.room.roomNumber}</td>
-          <td>{value.user.firstName + ' ' + value.user.lastName}</td>
-          <td>{value.status}</td>
+          <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">{value.bookingId}</td>
+          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">{value.room.roomNumber}</td>
+          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">{value.user.firstName + ' ' + value.user.lastName}</td>
+          <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">{value.status}</td>
         </tr>
       );
     });
@@ -65,18 +65,20 @@ const BookingListComponent = () => {
   
   
     return (
-      <div className="bg-white rounded-md dark:border-strokedark dark:bg-boxdark w-full">
-        <table className={'table-auto w-full'}>
-          <thead>
-            <tr>
-              <th>Booking ID</th>
-              <th>Room No.</th>
-              <th>Name</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>{init()}</tbody>
-        </table>
+      <div className="rounded-2xl border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+        <div className="max-w-full overflow-x-auto">
+          <table className='table-auto w-full'>
+            <thead>
+              <tr className="bg-gray-2 text-left dark:bg-meta-4">
+                <th className="py-4 px-4 font-medium text-black dark:text-white xl:pl-11">Booking ID</th>
+                <th className="py-4 px-4 font-medium text-black dark:text-white">Room No.</th>
+                <th className="py-4 px-4 font-medium text-black dark:text-white">Name</th>
+                <th className="py-4 px-4 font-medium text-black dark:text-white">Status</th>
+              </tr>
+            </thead>
+            <tbody>{init()}</tbody>
+          </table>
+        </div>
       </div>
     )
   }
