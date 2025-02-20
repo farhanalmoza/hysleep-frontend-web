@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import Logo from '../images/logo/hysleep.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding, faClipboard, faEye } from '@fortawesome/free-regular-svg-icons';
+import { faKey, faList } from '@fortawesome/free-solid-svg-icons'
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -179,7 +180,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   }`}
                   aria-current='page'
                 >
-                  <FontAwesomeIcon  icon={faEye}/>
+                  <FontAwesomeIcon  icon={faKey}/>
                     Manage Password
                 </NavLink>
               </li>
@@ -191,7 +192,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   }`}
                   aria-current='page'
                 >
-                  <FontAwesomeIcon  icon={faEye}/>
+                  <FontAwesomeIcon  icon={faList}/>
                     Bookings
                 </NavLink>
               </li>
