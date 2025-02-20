@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllBooking } from '../services/bookingServices';
 
 
@@ -47,8 +47,6 @@ const BookingListComponent = () => {
     
 
   function init() {
-    console.log(Array.isArray(data))
-    getBookingData();
     const requests = data.map((value:Booking, index:number)  => {
       return (
         <tr key={index}>
@@ -59,10 +57,20 @@ const BookingListComponent = () => {
         </tr>
       );
     });
-    return <>{requests}</>;
+    return requests;
   }
 
+  function initiate() {
+    const [tableRows, setTableRows] = useState<JSX.Element[]>([]);
   
+    useEffect(() => {
+      console.log('INIT')
+      getBookingData();
+      setTableRows(init()); // Call `init()` only on mount
+    }, []);
+  
+    return <tbody>{tableRows}</tbody>;
+  }
   
     return (
       <div className="bg-white rounded-md dark:border-strokedark dark:bg-boxdark w-full">
@@ -75,7 +83,7 @@ const BookingListComponent = () => {
               <th>Status</th>
             </tr>
           </thead>
-          <tbody>{init()}</tbody>
+          <tbody>{initiate()}</tbody>
         </table>
       </div>
     )
