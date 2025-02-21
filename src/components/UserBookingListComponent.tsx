@@ -90,7 +90,7 @@ const BookingListComponent = () => {
 
   function filter(e: any) {
     if (email == "") {
-      // window.location.reload;
+      e.preventDefault();
       return;
     } 
     setData(data.filter(booking => booking.user.email === email));
