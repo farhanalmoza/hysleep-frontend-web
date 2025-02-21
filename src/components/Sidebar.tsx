@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import Logo from '../images/logo/hysleep.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faClipboard, faEye } from '@fortawesome/free-regular-svg-icons';
-import { faKey, faList } from '@fortawesome/free-solid-svg-icons'
+import { faBuilding, faClipboard } from '@fortawesome/free-regular-svg-icons';
+import { faKey, faList, faAddressBook } from '@fortawesome/free-solid-svg-icons'
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -194,6 +194,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 >
                   <FontAwesomeIcon  icon={faList}/>
                     Bookings
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/bookings/users"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    (pathname === '/bookings/users') && 'bg-graydark dark:bg-meta-4'
+                  }`}
+                  aria-current='page'
+                >
+                  <FontAwesomeIcon  icon={faAddressBook}/>
+                    Bookings By User
                 </NavLink>
               </li>
             </ul>
