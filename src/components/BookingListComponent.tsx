@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllBooking } from '../services/bookingServices';
 
 
@@ -33,12 +33,13 @@ const BookingListComponent = () => {
   
   
   const [data, setData] = useState<Array<Booking>>([]);
+  const [tableRows, setTableRows] = useState<JSX.Element[]>([]);
 
     const getBookingData = async () => {
       try {
         
         const response: ResponseModel = await getAllBooking();
-        setData(response.val);   
+        return response.val;
       } catch (error) {
         toast.error('Something went wrong');
       }
@@ -47,8 +48,6 @@ const BookingListComponent = () => {
     
 
   function init() {
-    console.log(Array.isArray(data))
-    getBookingData();
     const requests = data.map((value:Booking, index:number)  => {
       return (
         <tr key={index}>
@@ -59,10 +58,32 @@ const BookingListComponent = () => {
         </tr>
       );
     });
-    return <>{requests}</>;
+    return requests;
   }
 
-  
+   function initiate() {
+
+    useEffect(() => {
+      const initial = async () => {
+        try {
+          const response = await getBookingData();
+          setData(response);
+        } catch (error) {
+
+        }
+        
+      }
+      initial();
+    }, []);
+
+    useEffect(() => {
+      if (data !== null) {
+        setTableRows(init()); // Call `init()` only when data is ready
+      }
+    }, [data]); 
+
+    return <>{tableRows}</>;
+  }
   
     return (
       <div className="rounded-2xl border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
@@ -76,7 +97,7 @@ const BookingListComponent = () => {
                 <th className="py-4 px-4 font-medium text-black dark:text-white">Status</th>
               </tr>
             </thead>
-            <tbody>{init()}</tbody>
+            <tbody>{initiate()}</tbody>
           </table>
         </div>
       </div>
